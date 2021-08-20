@@ -44,6 +44,7 @@ public class Calc {
 		      
 		  default:
 		      System.out.println("Invalid operation");
+		      System.out.println("Invalid");
 		      break;
 		 }
 		 
