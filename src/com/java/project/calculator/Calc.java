@@ -1,4 +1,4 @@
-package com.java.project;
+package com.java.project.calculator;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class Calc {
 		   
 		System.out.println("Enter second number :");
 	    num2 = input.nextDouble();
-		   
+		  input.close(); 
 		 switch (op) {
 		 
 		  case('+'):
