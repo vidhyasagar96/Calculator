@@ -90,12 +90,11 @@ public class Main {
         if(arrayList.contains(num))
             System.out.println(num+" is found");
         else
-            System.out.println("ad");
+            System.out.println("Not found");
             }
     private static void sortExpenses(ArrayList<Integer> arrayList) {
         Collections.sort(arrayList);
         System.out.println(arrayList);
 
-       //Complete the method. The expenses should be sorted in ascending order.
     }
 }
