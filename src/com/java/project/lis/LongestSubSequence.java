@@ -7,17 +7,18 @@ import java.util.Scanner;
 public class LongestSubSequence {
 	 public static void main(String[] args){
 		 	Scanner input = new Scanner(System.in);
-		 	System.out.println("Enter numbers less than 100 and type done to show the largest increasing subsequence");
+		 	System.out.println("Enter numbers less than 100 and Enter any letter to show the largest increasing subsequence");
 		 	ArrayList<Integer> num = new ArrayList<>();
 		 	while(input.hasNextInt()) {
 		 		num.add(input.nextInt());
 		 	}
-	        System.out.println(num);
 	        int[] arr = num.stream().mapToInt(i->i).toArray();
-	        //System.out.println(Arrays.toString(arr));
+	        System.out.println("Entered array is "+Arrays.toString(arr));
 	        int[][] lssOp = LongestSubSequence.lssIteration(arr);
 	        int[] lengthArray = lssOp[0];
 	        int[] subSequenceArray = lssOp[1];
+	        //System.out.println(Arrays.toString(lssOp[0]));
+	        //System.out.println(Arrays.toString(lssOp[1]));
 
 
 	        int[] maxElementInfo = LongestSubSequence.getMaxElementIndex(lengthArray);
@@ -27,7 +28,8 @@ public class LongestSubSequence {
 
 
 	        int[] longestSubSequenceArray = LongestSubSequence.getOriginalElements(arr, subSequenceArray, maxElement, maxElementIndex);
-	        System.out.println(Arrays.toString(longestSubSequenceArray));
+	        System.out.println("\nLongest increasing Subsequent array is "+Arrays.toString(longestSubSequenceArray));
+	        input.close();
 	    }
 
 	    public static int[][] lssIteration(int[] arr){
@@ -36,7 +38,7 @@ public class LongestSubSequence {
 	        Arrays.fill(lengthArray, 1);
 	        Arrays.fill(subSequenceArray, -1);
 
-	        for (int i = 0; i < arr.length; i++) {
+	        for (int i = 1; i < arr.length; i++) {
 	            int maxEleForI = Integer.MIN_VALUE;
 	            for (int j = 0; j < i; j++) {
 	                if(arr[i] > arr[j]){
@@ -60,7 +62,9 @@ public class LongestSubSequence {
 	            longestSequence[sequenceLength - 1] = originalArray[index];
 	            index = subSequentArray[index];
 	            sequenceLength--;
-	            if(index < 0) break;
+	            if(index < 0) {
+	            	break;
+	            }
 	        }
 	        return longestSequence;
 	    }
@@ -69,12 +73,13 @@ public class LongestSubSequence {
 	        int result = Integer.MIN_VALUE;
 	        int resultIndex = -1;
 
-	        for (int value:arr) {
-	            if(result < value){
-	                result = value;
-	            }
-	            resultIndex++;
-	        }
+	        for (int i = 0; i < arr.length; i++) {
+	        	if(result<arr[i]) {
+	        		result=arr[i];
+	        		resultIndex = i;
+	        	}
+				
+			}
 
 	        return new int[]{result, resultIndex};
 	    }
